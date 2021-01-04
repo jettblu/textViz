@@ -1,0 +1,17 @@
+<!--Nav bar code extensively modified https://pythonprogramming.net/django-tutorial/-->
+<nav><div class="nav-wrapper amber darken-2 z-depth-3">
+    <a href="/" class="brand-logo center">Textz</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down"><li><a href="/">Home</a></li>
+        {% if user.is_authenticated %}
+             <li><a href="{% url 'main:account' userName=user %}">{{user.username|title}}</a></li>
+             <li><a href="/experimental">Experiment</a></li>
+             <li><a href="/info">Info</a></li>
+             <li><a href="/logout">Logout</a></li>
+        {% else %}
+            <li><a href="/experimental">Experiment</a></li>
+            <li><a href="/register">Register</a></li>
+            <li><a href="/login">Login</a></li>
+        {% endif %}
+    </ul>
+</div>
+</nav>

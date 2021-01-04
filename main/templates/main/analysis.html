@@ -1,0 +1,196 @@
+{% extends "main/header.html" %}
+
+{% block content %}
+<h2 class="center">{{ contactName }} Message Analysis</h2>
+
+
+<div style="background-color: #004d66;"><span>
+            <div class="section">
+              <div class="row">
+              <div class="col s4">
+            <h6>Total Sentiment Score:: </h6>
+            <p>{{ contact.sentimentScore }}% Positive</p>
+              </div>
+              <div class="col s4">
+              <h6>{{ contactName }} Sentiment Score:</h6>
+              <p>{{ contact.incoming.sentimentScore }}% Positive</p>
+              </div>
+              <div class="col s4">
+              <h6> Your Sentiment Score: </h6>
+              <p>{{ contact.outgoing.sentimentScore }}% Positive</p>
+              </div>
+              </div>
+          </div>
+      </span>
+</div>
+
+
+
+<div class="section">
+    <div class="row">
+        <div class="col s6">
+<ul class="collapsible popout">
+        <li>
+            <div class="collapsible-header" style="background-color: white; color: #076b87"><b>{{ contactName }} Positive Texts</b></div>
+            <div class="collapsible-body" style="background-color: #004d66;"><span>
+            <div class="section">
+              <div class="row">
+                  <div class="col s6">
+                  <h6><strong>Texts</strong></h6>
+                  </div>
+                  <div class="col s4">
+                  <h6><strong>Tokens</strong></h6>
+                  </div>
+                  <div class="col s2">
+                  <h6><strong>Confidence</strong></h6>
+                  </div>
+              </div>
+                  {% for message in contact.incoming.positiveTexts %}
+                       <div class="row">
+                      <div class="col s6">
+                        <p>{{ message.0 }}</p>
+                      </div>
+                      <div class="col s4">
+                                <p>{{ message.1 }}</p>
+                      </div>
+                           <div class="col s2">
+                                <p>{{ message.2 }}%</p>
+                      </div>
+                       </div>
+                  {% endfor %}
+
+            </div>
+      </span>
+      </div>
+        </li>
+</ul>
+        </div>
+
+        <div class="col s6">
+<ul class="collapsible popout">
+        <li>
+            <div class="collapsible-header" style="background-color: white; color: #076b87"><b>{{ contactName }} Negative Texts</b></div>
+            <div class="collapsible-body" style="background-color: #004d66;"><span>
+            <div class="section">
+              <div class="row">
+                  <div class="col s6">
+                  <h6><strong>Texts</strong></h6>
+                  </div>
+                  <div class="col s4">
+                  <h6><strong>Tokens</strong></h6>
+                  </div>
+                  <div class="col s2">
+                  <h6><strong>Confidence</strong></h6>
+                  </div>
+              </div>
+                  {% for message in contact.incoming.negativeTexts %}
+                        <div class="row">
+                      <div class="col s6">
+                        <p>{{ message.0 }}</p>
+                      </div>
+                      <div class="col s4">
+                                <p>{{ message.1 }}</p>
+                      </div>
+                           <div class="col s2">
+                                <p>{{ message.2 }}%</p>
+                      </div>
+                       </div>
+                  {% endfor %}
+
+            </div>
+      </span>
+      </div>
+        </li>
+</ul>
+        </div></div></div>
+
+
+<div class="section">
+    <div class="row">
+        <div class="col s6">
+<ul class="collapsible popout">
+        <li>
+            <div class="collapsible-header" style="background-color: white; color: #076b87"><b>Your Positive Texts</b></div>
+            <div class="collapsible-body" style="background-color: #004d66;"><span>
+            <div class="section">
+              <div class="row">
+                  <div class="col s6">
+                  <h6><strong>Texts</strong></h6>
+                  </div>
+                  <div class="col s4">
+                  <h6><strong>Tokens</strong></h6>
+                  </div>
+                  <div class="col s2">
+                  <h6><strong>Confidence</strong></h6>
+                  </div>
+              </div>
+                  {% for message in contact.outgoing.positiveTexts %}
+                        <div class="row">
+                      <div class="col s6">
+                        <p>{{ message.0 }}</p>
+                      </div>
+                      <div class="col s4">
+                                <p>{{ message.1 }}</p>
+                      </div>
+                           <div class="col s2">
+                                <p>{{ message.2 }}%</p>
+                      </div>
+                       </div>
+                  {% endfor %}
+
+            </div>
+      </span>
+      </div>
+        </li>
+</ul>
+        </div>
+
+        <div class="col s6">
+<ul class="collapsible popout">
+        <li>
+            <div class="collapsible-header" style="background-color: white; color: #076b87"><b>Your Negative Texts</b></div>
+            <div class="collapsible-body" style="background-color: #004d66;"><span>
+            <div class="section">
+              <div class="row">
+                  <div class="col s6">
+                  <h6><strong>Texts</strong></h6>
+                  </div>
+                  <div class="col s4">
+                  <h6><strong>Tokens</strong></h6>
+                  </div>
+                  <div class="col s2">
+                  <h6><strong>Confidence</strong></h6>
+                  </div>
+              </div>
+                  {% for message in contact.outgoing.negativeTexts %}
+                        <div class="row">
+                      <div class="col s6">
+                        <p>{{ message.0 }}</p>
+                      </div>
+                      <div class="col s4">
+                                <p>{{ message.1 }}</p>
+                      </div>
+                           <div class="col s2">
+                                <p>{{ message.2 }}%</p>
+                      </div>
+                       </div>
+                  {% endfor %}
+
+            </div>
+      </span>
+      </div>
+        </li>
+</ul>
+        </div></div></div>
+
+
+
+
+<script>
+ $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,45 @@
+DataSet: IBM Debater(R) - Sentiment Composition Lexicons
+
+The dataset contains:
+1. Sentiment composition lexicons containing 2,783 words.
+2. Sentiment lexicons containing 66,058 unigrams and 262,555 bigrams. 
+
+The dataset is described in: 
+Orith Toledo-Ronen, Roy Bar-Haim, Alon Halfon, Amir Menczel, Charles Jochim, Noam Slonim, Ranit Aharonov. 
+“Learning Sentiment Composition from Sentiment Lexicons”, COLING, 2018.
+Please cite this paper if you use the dataset.
+
+The dataset includes:
+1. ReleaseNotes.docx - release notes file describing the data
+2. SEMANTIC_CLASSES.xlsx - the composition lexicons for reversers, propagators, and dominators
+3. ADJECTIVES.xlsx - the composition lexicons for two gradable adjective pairs (high-low, fast-slow) and their expansion list  
+4. LEXICON_UG.txt - the unigrams sentiment lexicon
+5. LEXICON_BG.txt - the bigrams sentiment lexicon
+
+Detailed description of the data:
+SEMANTIC_CLASSES.xlsx 
+This file contains the lists of the semantic classes words for each type. 
+For each semantic class (reversers, propagators, and dominators) there are two tabs in the Excel file, 
+one for a positive composition (POS) and one for negative composition (NEG). 
+Overall there are 6 tabs: DOMINATOR_NEG, DOMINATOR_POS, PROPAGETOR_POS, PROPAGETOR_NEG, REVERSER_POS, REVERSER_NEG.
+
+ADJECTIVES.xlsx
+This file contains the lists of the semantic classes words for the gradable adjective pairs.
+(HIGH,LOW)_POS_NEG, (HIGH,LOW)_NEG_POS: the lists of words for ADJ high/low.
+(FAST,SLOW)_POS_NEG, (FAST,SLOW)_NEG_POS: the lists of words for ADJ fast/slow.
+ADJECTIVE_EXPANSION: the list of adjective expansions for high, low, fast, slow.
+
+LEXICON_UG.txt
+A list of 66058 unigrams and their predicted sentiment score. 
+Note that in the paper, for unigrams that have sentiment in the HL lexicon (the publicly-available 
+sentiment lexicon of Hu and Liu (2004)), we used the original sentiment from the HL lexicon (+1 or -1) 
+and not the predicted score. This step is not reflected in the released lexicon. 
+
+LEXICON_BG.txt
+A list of 262555 selected bigrams in the following format:
+	Column 1: the bigram
+	Column 2: the OpenNLP POS tags of its unigrams
+	Column 3: the predicted sentiment score
+
+
+

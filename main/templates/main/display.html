@@ -1,0 +1,106 @@
+{% extends "main/header.html" %}
+{% block content %}
+
+<!--{% block javascript %}-->
+<!--  <script>-->
+<!--    $(document).ready(function(){-->
+<!--    $(".collapsible-header").click(function(){-->
+<!--    var contactName = $(this).text();-->
+<!--    var fileKey = $(this).attr('keyValue');-->
+
+<!--    console.log(contactName);-->
+<!--    console.log(fileKey);-->
+
+<!--    $.ajax({-->
+<!--        url: 'main:ajax',-->
+<!--        data: {-->
+<!--          'contactName': contactName-->
+<!--        },-->
+<!--        dataType: 'json',-->
+<!--        success: function (data) {-->
+
+<!--            console.log(data.contacts);-->
+<!--            alert(data.contacts);-->
+
+<!--        }-->
+<!--      });-->
+
+<!--  });-->
+<!--});-->
+<!--  </script>-->
+<!--{% endblock %}-->
+
+<h2>Contacts Information</h2>
+
+{{ plot_div|safe }}
+
+<ul class="collapsible popout">
+    {% for contact in page_obj.object_list %}
+        {% with contactObj=contacts|get_item:contact %}
+        <li>
+            <div class="collapsible-header" style="background-color: white; color: #076b87" keyValue={{ fileKey }}><b>{{ contactObj.name }}</b></div>
+            <div class="collapsible-body" style="background-color: #004d66;"><span>
+            <div class="section">
+              <div class="row">
+              <div class="col s4">
+                  <h6><strong>Text Count</strong></h6>
+            <p>{{ contactObj.textCount }}</p>
+              </div>
+              <div class="col s4">
+              <h6>{{ contactObj.name }} Average Lag</h6>
+              <p>{{ contactObj.incoming.avgLagText }}</p>
+              </div>
+              <div class="col s4">
+              <h6> Your Average Lag</h6>
+              <p>{{ contactObj.outgoing.avgLagText }}</p>
+              </div>
+              </div>
+          </div>
+          <div class="divider" style="background-color: #ffa000;"></div>
+          <div class="row">
+          <div class="col s4">
+              <h6>Total Words</h6>
+              <p>{{ contactObj.incoming.wordsCount }}</p>
+          </div>
+               <div class="col s4">
+              <h6>Message Analysis</h6>
+              <a href="{% url 'main:analysis' userName=user fileKey=fileKey contactName=contactObj.name %}" class="btn amber darken-2">Analyze</a>
+          </div>
+             <div class="col s4">
+                 <h6>Visualize</h6>
+          <a href="{% url 'main:visuals' userName=user fileKey=fileKey contactName=contactObj.name %}" class="btn amber darken-2">{{ contactObj.name }}</a>
+              </div>
+          </div>
+      </span>
+      </div>
+        </li>
+        {% endwith %}
+    {% endfor %}
+</ul>
+
+<br>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1" class="amber-text text-darken-2">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="amber-text text-darken-2">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="amber-text text-darken-2">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="amber-text text-darken-2">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+<script>
+ $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+</script>
+{% endblock %}

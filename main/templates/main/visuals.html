@@ -1,0 +1,9 @@
+{% extends "main/header.html" %}
+
+{% block content %}
+<h2>{{ contactName }} Visuals</h2>
+    {% for plot_div in plots %}
+    {{ plot_div|safe }}
+    <br>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "main/header.html" %}
+
+{% block content %}
+<h2>Version History</h2>
+
+{% for file in files %}
+<p>{{file.uploadDate}}: <a href=" {% url 'main:display' userName=user fileKey=file.pk %} " class="amber-text text-darken-2">{{ file.msgFile.name }}</a> <small>({{ file.msgFile.size|filesizeformat }}) </small> </p>
+{% endfor %}
+
+            <div style="background-color: #004d66;"><span>
+            <div class="section">
+              <div class="row">
+              <div class="col s4">
+            <h6>Total texts: </h6>
+            <p>{{ allTexts }}</p>
+              </div>
+              <div class="col s4">
+              <h6>Incoming Texts:</h6>
+              <p>{{ incomingTextCount }}</p>
+              </div>
+              <div class="col s4">
+              <h6> Outgoing Texts</h6>
+              <p>{{ outgoingTextCount }}</p>
+              </div>
+              </div>
+          </div>
+      </span>
+      </div>
+
+
+{% endblock %}
+

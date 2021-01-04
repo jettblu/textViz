@@ -1,0 +1,17 @@
+<!--Login html code taken from https://pythonprogramming.net/user-login-logout-django-tutorial/-->
+
+{% extends "main/header.html" %}
+
+{% block content %}
+<h2>Login</h2>
+	<form method = "POST">
+		{% csrf_token %}
+		{{form.as_p}}
+
+		<button class = "btn" type = "submit">Login</button>
+
+	</form>
+
+	If you don't already have an account, <a href = "/register"><strong>register</strong></a> for one
+
+{% endblock %}
